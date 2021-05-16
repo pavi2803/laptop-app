@@ -1,0 +1,106 @@
+<!doctype html>
+<title>Recommendations</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+mark {
+  background-color: orange;
+  color: black;
+}
+markelem{
+background-color: yellow;
+  color: black;
+}
+#panel, #flip {
+  font-size: 15px;
+  padding: 5px;
+  text-align: center;
+  background-color: #e5eecc;
+  border: solid 1px #c3c3c3;
+}
+
+#panel {
+  padding: 50px;
+  display: none;
+}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow");
+  });
+});
+</script>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <center><h5>Recommendations you might like:</h5></center>
+  <center><h5>Or</h5></center>
+  <center>
+<form action="{{ url_for("userinput")}}">
+    <button type="submit" value="Search Again" class="btn btn-primary">Explore more</button>
+</form>
+</center>
+&nbsp
+<div id="flip">Quick Analysis on your Recommendations</div>
+
+
+
+
+<div id="panel">
+<center>
+
+<h7> {{datal}} recommendations found for your specifications </h7>
+  
+<table class="table">
+<tr>
+    <th>Product with Maximum Price</th>
+    <th><mark>CPU</mark></th>
+    <th><mark>Screen/Display</mark></th>
+    <th><mark>Memory</mark></th>
+    <th><mark>Price</mark></th>
+  </tr>
+  <tr>
+    <td><markelem>{{maxcomp}} {{maxprod}}</markelem></td>
+    <td><markelem>{{maxcpu}}</markelem></td>
+    <td><markelem>{{maxscreen}}</markelem></td>
+    <td><markelem>{{maxmemory}}</markelem></td>
+    <td><markelem>{{maxpr}}</markelem></td>
+  </tr>
+</table>
+
+<table class="table">
+<tr>
+    <th>Product with Minimum Price</th>
+    <th><mark>CPU</mark></th>
+    <th><mark>Screen/Display</mark></th>
+    <th><mark>Memory</mark></th>
+    <th><mark>Price</mark></th>
+  </tr>
+  <tr>
+    <td><markelem>{{mincomp}} {{minprod}}</markelem></td>
+    <td><markelem>{{mincpu}}</markelem></td>
+    <td><markelem>{{minscreen}}</markelem></td>
+    <td><markelem>{{minmemory}}</markelem></td>
+    <td><markelem>{{minpr}}</markelem></td>
+  </tr>
+</table>
+</center>
+</div>
+</div>       
+&nbsp
+  {% for table in tables %} 
+    {{ table|safe }}
+  {% endfor %}
+
+     
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-database.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
