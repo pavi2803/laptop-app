@@ -2,8 +2,7 @@ from flask import Flask,render_template,request
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import plotly.express as pll
-import plotly.graph_objects as go
+
 
 
 app = Flask(__name__)
@@ -66,7 +65,7 @@ def userinput():
 def fetch_details_cpu(a,b,c,d):
     #st.text("Enter the Company of which you want to go for ")
     #user_cmp = st.text_input("Enter :")
-    DATA_URL = ('C:/Users/Pavithra/Documents/DATASETS/laptops.csv')
+    DATA_URL = ('laptops.csv')
     data = pd.read_csv(DATA_URL)
     
     if(d=="rupees"):
